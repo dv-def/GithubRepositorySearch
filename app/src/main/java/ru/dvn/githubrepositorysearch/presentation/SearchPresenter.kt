@@ -12,7 +12,7 @@ class SearchPresenter(
 ) {
     private var view: SearchView? = null
 
-    private val callback = object : Callback<SearchResponseDTO> {
+    val callback = object : Callback<SearchResponseDTO> {
         override fun onResponse(call: Call<SearchResponseDTO>, response: Response<SearchResponseDTO>) {
             onSuccessRequest(response)
         }
@@ -39,7 +39,7 @@ class SearchPresenter(
         repository.search(query, callback)
     }
 
-    private fun onSuccessRequest(response: Response<SearchResponseDTO>) {
+    fun onSuccessRequest(response: Response<SearchResponseDTO>) {
         if (response.isSuccessful) {
             val body = response.body()
             if (body != null) {
@@ -53,7 +53,7 @@ class SearchPresenter(
         }
     }
 
-    private fun onError(message: String) {
+    fun onError(message: String) {
         view?.showError("Не удалось отправить запрос: $message")
     }
 }
