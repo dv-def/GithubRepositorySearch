@@ -8,7 +8,7 @@ import ru.dvn.githubrepositorysearch.domain.SearchResult
 fun SearchResponseDTO.toSearchResponse(): SearchResponse {
     return SearchResponse(
         totalCount = this.totalCount,
-        items = this.items.map { dto -> dto.toSearchResult() }
+        items = this.items?.map { dto -> dto.toSearchResult() }
     )
 }
 
