@@ -1,13 +1,14 @@
 package ru.dvn.githubrepositorysearch.data
 
-import retrofit2.Callback
 import ru.dvn.githubrepositorysearch.domain.Repository
+import ru.dvn.githubrepositorysearch.domain.SearchResponse
+import ru.dvn.githubrepositorysearch.utils.toSearchResponse
 
 class RepositoryImpl(
     private val api: SearchApi
 ) : Repository {
 
-    override fun search(query: String, callback: Callback<SearchResponseDTO>) {
-        api.search(query).enqueue(callback)
+    override suspend fun search(query: String): SearchResponse {
+        return api.search(query).toSearchResponse()
     }
 }

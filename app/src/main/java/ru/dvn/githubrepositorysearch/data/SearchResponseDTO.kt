@@ -7,5 +7,5 @@ data class SearchResponseDTO(
     val totalCount: Int,
 
     @SerializedName("items")
-    val items: List<SearchResultDTO>
+    val items: List<SearchResultDTO>?
 )
